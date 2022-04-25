@@ -24,9 +24,9 @@ class _NavbarState extends State<Navbar> {
     'assets/images/expenses.png',
   ];
 
-  bool sidebarOpen = false;
+  bool sidebarOpen = true;
 
-  double xOffset = 60;
+  double xOffset = 265;
   double yOffset = 0;
 
   void setSidebarState() {
@@ -61,10 +61,11 @@ class _NavbarState extends State<Navbar> {
                     Container(
                       padding: const EdgeInsets.all(8.0),
                       child: const Text(
-                        'Logo Here',
+                        'LOGO HERE',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -76,7 +77,7 @@ class _NavbarState extends State<Navbar> {
                   itemCount: menuItems.length,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
-                      sidebarOpen = false;
+                      sidebarOpen = true;
                       selectedMenuItem = index;
                       setSidebarState();
                     },
