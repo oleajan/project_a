@@ -1,16 +1,12 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/constants.dart';
-import 'package:project_a/navigation/navigation_state.dart';
 import 'package:provider/provider.dart';
 
 import 'main/main_view.dart';
 import 'main/menu_controller.dart';
-import 'navigation/navbar.dart';
-import 'navigation/navigation_block.dart';
 
 void main() {
   runApp(const MyApp());
