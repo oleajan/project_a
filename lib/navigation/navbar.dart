@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_a/constants.dart';
 import 'package:project_a/navigation/nav_item.dart';
+
 class Navbar extends StatelessWidget {
   const Navbar({Key? key}) : super(key: key);
 
@@ -14,16 +15,11 @@ class Navbar extends StatelessWidget {
           const SizedBox(
             height: 170,
             child: DrawerHeader(
-              decoration: BoxDecoration(
-                color: secondaryColor
-              ),
+              decoration: BoxDecoration(color: secondaryColor),
               child: Center(
                 child: Text(
                   'Header',
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 40
-                  ),
+                  style: TextStyle(color: Colors.white54, fontSize: 40),
                 ),
               ),
             ),
@@ -77,6 +73,17 @@ class Navbar extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          NavItem(
+            title: 'Something',
+            icon: const Icon(
+              FontAwesomeIcons.user,
+              size: 20,
+              color: Colors.white54,
+            ),
+            press: () {
+              // TODO Bottom NavItem
+            },
           ),
         ],
       ),
