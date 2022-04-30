@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Project-Lemur',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
+        scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
           .apply(bodyColor: secondaryColor),
         canvasColor: secondaryColor,
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             create: (context) => MenuController(),
           ),
         ],
-        child: MainScreen(),
+        child: const MainScreen(),
       ),
     );
   }

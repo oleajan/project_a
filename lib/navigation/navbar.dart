@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Navbar extends StatelessWidget {
   const Navbar({Key? key}) : super(key: key);
 
@@ -8,13 +8,57 @@ class Navbar extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-            child: const Text('Drawer Header'),
+          const DrawerHeader(
+            child: Text(
+              'Drawer Header',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
           DrawerListTile(
-            title: 'title1',
-            svgSrc: ' ',
-            press: () {},
+            title: 'Dashboard',
+            icon: const Icon(
+              FontAwesomeIcons.house,
+              size: 20,
+              color: Colors.white54,
+            ),
+            press: () {
+              // TODO
+            },
+          ),
+          DrawerListTile(
+            title: 'Transactions',
+            icon: const Icon(
+              FontAwesomeIcons.receipt,
+              size: 20,
+              color: Colors.white54,
+            ),
+            press: () {
+              // TODO
+            },
+          ),
+          DrawerListTile(
+            title: 'Assets',
+            icon: const Icon(
+              FontAwesomeIcons.landmark,
+              size: 20,
+              color: Colors.white54,
+            ),
+            press: () {
+
+            },
+          ),
+          DrawerListTile(
+            title: 'Settings',
+            icon: const Icon(
+              FontAwesomeIcons.sliders,
+              size: 20,
+              color: Colors.white54,
+            ),
+            press: () {
+              // TODO
+            },
           ),
         ],
       ),
@@ -27,26 +71,26 @@ class DrawerListTile extends StatelessWidget {
     Key? key,
     // For selecting those three line once press "Command+D"
     required this.title,
-    required this.svgSrc,
+    required this.icon,
     required this.press,
   }) : super(key: key);
 
-  final String title, svgSrc;
+  final String title;
+  final Icon icon;
   final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: press,
-      horizontalTitleGap: 0.0,
-      // leading: SvgPicture.asset(
-      //   svgSrc,
-      //   color: Colors.white54,
-      //   height: 16,
-      // ),
+      horizontalTitleGap: 2.0,
+      leading: icon,
       title: Text(
         title,
-        style: TextStyle(color: Colors.white54),
+        style: const TextStyle(
+          color: Colors.white54,
+          fontSize: 18,
+        ),
       ),
     );
   }
