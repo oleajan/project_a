@@ -18,7 +18,7 @@ class Dashboard extends StatelessWidget {
                 color: secondaryColor,
               ),
               onPressed: () {
-                // TODO
+                // TODO Dashboard layout
               },
             );
           },
