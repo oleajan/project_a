@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/asset/assets_view.dart';
 import 'package:project_a/constants.dart';
 import 'package:project_a/dashboard/dashboard_view.dart';
 
@@ -19,13 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Project-Lemur',
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: secondaryColor),
         canvasColor: secondaryColor,
       ),
-      home:const Dashboard(),
+      home:const Assets(),
     );
   }
 }
