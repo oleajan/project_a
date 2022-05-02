@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: secondaryColor),
         canvasColor: secondaryColor,
       ),
-      home:const Assets(),
+      home:const MainView(),
     );
   }
 }
