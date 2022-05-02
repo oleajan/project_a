@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project_a/asset/assets_view.dart';
 import 'package:project_a/constants.dart';
+import 'package:project_a/dashboard/dashboard_view.dart';
 import 'package:project_a/navigation/nav_item.dart';
+import 'package:project_a/setting/settings_view.dart';
+import 'package:project_a/transaction/transactions_view.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({Key? key}) : super(key: key);
@@ -31,46 +35,59 @@ class Navbar extends StatelessWidget {
                   title: 'Dashboard',
                   icon: const Icon(
                     FontAwesomeIcons.house,
-                    size: 20,
+                    size: 18,
                     color: Colors.white54,
                   ),
                   press: () {
                     // TODO Dashboard state
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Dashboard())
+                    );
                   },
                 ),
                 NavItem(
                   title: 'Transactions',
                   icon: const Icon(
                     FontAwesomeIcons.receipt,
-                    size: 20,
+                    size: 18,
                     color: Colors.white54,
                   ),
                   press: () {
                     // TODO Transactions state
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Transactions())
+                    );
                   },
                 ),
                 NavItem(
                   title: 'Assets',
                   icon: const Icon(
                     FontAwesomeIcons.landmark,
-                    size: 20,
+                    size: 18,
                     color: Colors.white54,
                   ),
                   press: () {
                     // TODO Assets state
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Assets())
+                    );
                   },
                 ),
                 NavItem(
                   title: 'Settings',
                   icon: const Icon(
                     FontAwesomeIcons.sliders,
-                    size: 20,
+                    size: 18,
                     color: Colors.white54,
                   ),
                   press: () {
                     // TODO Settings state
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Settings())
+                    );
                   },
                 ),
+                const Divider()
               ],
             ),
           ),
@@ -78,7 +95,7 @@ class Navbar extends StatelessWidget {
             title: 'Something',
             icon: const Icon(
               FontAwesomeIcons.user,
-              size: 20,
+              size: 18,
               color: Colors.white54,
             ),
             press: () {

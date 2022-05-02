@@ -16,15 +16,18 @@ class NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: press,
-      horizontalTitleGap: 2.0,
-      leading: icon,
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white54,
-          fontSize: 18,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: ListTile(
+        onTap: press,
+        horizontalTitleGap: 2.0,
+        leading: icon,
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white54,
+            fontSize: 16,
+          ),
         ),
       ),
     );

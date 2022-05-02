@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_a/constants.dart';
+import 'package:project_a/navigation/navbar.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({ Key? key }) : super(key: key);
@@ -9,27 +9,15 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.bars,
-                color: secondaryColor,
-              ),
-              onPressed: () {
-                // TODO Dashboard layout
-              },
-            );
-          },
-        ),
+        backgroundColor: secondaryColor,
         title: const Text(
           'Dashboard',
           style: TextStyle(
-            color: secondaryColor
+            color: Colors.white
           ),
-          ),
+        ),
       ),
+      drawer: const Navbar(),
     );
   }
 }

@@ -3,18 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/constants.dart';
-import 'package:provider/provider.dart';
+import 'package:project_a/dashboard/dashboard_view.dart';
 
 import 'main/main_view.dart';
-import 'main/menu_controller.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-          .apply(bodyColor: secondaryColor),
+            .apply(bodyColor: secondaryColor),
         canvasColor: secondaryColor,
       ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => MenuController(),
-          ),
-        ],
-        child: const MainScreen(),
-      ),
+      home:const Dashboard(),
     );
   }
 }

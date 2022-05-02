@@ -9,24 +9,11 @@ class Assets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.bars,
-                color: secondaryColor,
-              ),
-              onPressed: () {
-                // TODO Assets view layout
-              },
-            );
-          },
-        ),
+        backgroundColor: secondaryColor,
         title: const Text(
           'Assets',
           style: TextStyle(
-            color: secondaryColor
+            color: Colors.white
           ),
           ),
       ),

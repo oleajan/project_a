@@ -9,24 +9,11 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.bars,
-                color: secondaryColor,
-              ),
-              onPressed: () {
-                // TODO Settings view layout
-              },
-            );
-          },
-        ),
+        backgroundColor: secondaryColor,
         title: const Text(
           'Settings',
           style: TextStyle(
-            color: secondaryColor
+            color: Colors.white
           ),
           ),
       ),
