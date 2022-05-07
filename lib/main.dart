@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/asset/assets_view.dart';
 import 'package:project_a/constants.dart';
-import 'package:project_a/dashboard/dashboard_view.dart';
 
 import 'main/main_view.dart';
 

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_a/asset/assets_view.dart';
 import 'package:project_a/constants.dart';
-import 'package:project_a/dashboard/dashboard_view.dart';
-import 'package:project_a/dashboard/dashboard_view_desktop.dart';
 import 'package:project_a/main/main_view.dart';
 import 'package:project_a/navigation/nav_item.dart';
 import 'package:project_a/setting/settings_view.dart';

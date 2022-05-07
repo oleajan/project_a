@@ -8,7 +8,6 @@ class DashboardViewDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.deepPurple[200],
       drawer: const Navbar(),
       appBar: AppBar(
         title: const Text('D E S K T O P'),
@@ -59,12 +58,11 @@ class DashboardViewDesktop extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          // padding: const EdgeInsets.only(left: 20, right: 20),
                           // TODO card for transactions here
                           child: Container(
                             color: Colors.deepPurple[300],
                           ),
-                          // color: Colors.deepPurple[300],
+                          color: Colors.deepPurple[300],
                           height: 120,
                         ),
                       );
