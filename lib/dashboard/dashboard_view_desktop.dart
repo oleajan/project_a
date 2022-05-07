@@ -21,7 +21,7 @@ class DashboardViewDesktop extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16),
                   child: Container(
                     constraints: const BoxConstraints(
                       minHeight: 150,
@@ -56,7 +56,12 @@ class DashboardViewDesktop extends StatelessWidget {
                     itemCount: 8,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          top: 8,
+                          right: 16,
+                          bottom: 8,
+                        ),
                         child: Container(
                           // TODO card for transactions here
                           child: Container(
@@ -76,17 +81,14 @@ class DashboardViewDesktop extends StatelessWidget {
           // TODO DASHBOARD RIGHT SIDEBAR
           Container(
             width: 400,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 10),
-                )
-              ]
-            ),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: const Offset(0, 10),
+              )
+            ]),
           ),
         ],
       ),

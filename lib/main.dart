@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/constants.dart';
-
-import 'main/main_view.dart';
+import 'package:project_a/dashboard/dashboard_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: secondaryColor),
         canvasColor: secondaryColor,
       ),
-      home:const MainView(),
+      home:const Dashboard(),
     );
   }
 }
