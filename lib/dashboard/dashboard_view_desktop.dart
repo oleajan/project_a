@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:project_a/constants.dart';
 import 'package:project_a/navigation/navbar.dart';
 
-class DashboardViewDesktop extends StatelessWidget {
+class DashboardViewDesktop extends StatefulWidget {
   const DashboardViewDesktop({Key? key}) : super(key: key);
 
+  @override
+  State<DashboardViewDesktop> createState() => _DashboardViewDesktopState();
+}
+
+class _DashboardViewDesktopState extends State<DashboardViewDesktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
