@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_a/asset/assets_view.dart';
 import 'package:project_a/constants.dart';
 import 'package:project_a/dashboard/dashboard_view.dart';
+import 'package:project_a/dashboard/dashboard_view_desktop.dart';
+import 'package:project_a/main/main_view.dart';
 import 'package:project_a/navigation/nav_item.dart';
 import 'package:project_a/setting/settings_view.dart';
 import 'package:project_a/transaction/transactions_view.dart';
@@ -40,8 +42,9 @@ class Navbar extends StatelessWidget {
                   ),
                   press: () {
                     // TODO Dashboard state
+                    Navigator.pop(context);
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Dashboard())
+                      MaterialPageRoute(builder: (context) => const MainView())
                     );
                   },
                 ),
@@ -54,6 +57,7 @@ class Navbar extends StatelessWidget {
                   ),
                   press: () {
                     // TODO Transactions state
+                    Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => const Transactions())
                     );
@@ -68,6 +72,7 @@ class Navbar extends StatelessWidget {
                   ),
                   press: () {
                     // TODO Assets state
+                    Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => const Assets())
                     );
@@ -82,6 +87,7 @@ class Navbar extends StatelessWidget {
                   ),
                   press: () {
                     // TODO Settings state
+                    Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => const Settings())
                     );

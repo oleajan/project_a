@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_a/constants.dart';
+import 'package:project_a/navigation/navbar.dart';
 
 class DashboardViewDesktop extends StatelessWidget {
   const DashboardViewDesktop({Key? key}) : super(key: key);
@@ -6,9 +8,12 @@ class DashboardViewDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[200],
+      // backgroundColor: Colors.deepPurple[200],
+      drawer: const Navbar(),
       appBar: AppBar(
         title: const Text('D E S K T O P'),
+        backgroundColor: secondaryColor,
+        toolbarHeight: 80,
       ),
       body: Row(
         children: [
@@ -18,11 +23,32 @@ class DashboardViewDesktop extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Container(
-                      height: 250,
-                      color: Colors.deepPurple[400],
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minHeight: 150,
+                      maxHeight: 500,
+                      minWidth: 100,
+                      maxWidth: double.infinity,
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      // TODO card with graphs here
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple[400],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(0, 3),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -33,7 +59,12 @@ class DashboardViewDesktop extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          color: Colors.deepPurple[300],
+                          // padding: const EdgeInsets.only(left: 20, right: 20),
+                          // TODO card for transactions here
+                          child: Container(
+                            color: Colors.deepPurple[300],
+                          ),
+                          // color: Colors.deepPurple[300],
                           height: 120,
                         ),
                       );
@@ -44,9 +75,20 @@ class DashboardViewDesktop extends StatelessWidget {
             ),
           ),
           // * 2nd Column
+          // TODO DASHBOARD RIGHT SIDEBAR
           Container(
-            width: 200,
-            color: Colors.deepPurple[300],
+            width: 400,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 10),
+                )
+              ]
+            ),
           ),
         ],
       ),
