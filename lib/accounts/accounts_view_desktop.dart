@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:project_a/commons/models/accounts_model.dart';
 import 'package:project_a/constants.dart';
 
-class AssetsViewDesktop extends StatefulWidget {
-  const AssetsViewDesktop({Key? key}) : super(key: key);
+class AccountsViewDesktop extends StatefulWidget {
+  const AccountsViewDesktop({Key? key}) : super(key: key);
 
   @override
-  State<AssetsViewDesktop> createState() => _AssetsViewDesktopState();
+  State<AccountsViewDesktop> createState() => _AccountsViewDesktopState();
 }
 
-class _AssetsViewDesktopState extends State<AssetsViewDesktop> {
+class _AccountsViewDesktopState extends State<AccountsViewDesktop> {
   final List<Accounts> _accounts = [
     new Accounts(
       1,
@@ -34,7 +34,7 @@ class _AssetsViewDesktopState extends State<AssetsViewDesktop> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Assets'),
+        title: const Text('Accounts'),
         backgroundColor: secondaryColor,
         toolbarHeight: 80,
       ),

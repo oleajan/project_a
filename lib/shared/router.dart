@@ -5,7 +5,7 @@ import 'package:project_a/setting/settings_view.dart';
 import 'package:project_a/shared/root_layout.dart';
 import 'package:project_a/transaction/transactions_view.dart';
 
-import '../asset/assets_view.dart';
+import '../accounts/accounts_view.dart';
 
 const _pageKey = ValueKey('_pageKey');
 const _scaffoldKey = ValueKey('_scaffoldKey');
@@ -22,9 +22,9 @@ const List<NavigationDestination> destinations = [
     route: '/transactions',
   ),
   NavigationDestination(
-    label: 'Assets',
+    label: 'Accounts',
     icon: Icon(Icons.people),
-    route: '/assets',
+    route: '/accounts',
   ),
   NavigationDestination(
     route: '/settings',
@@ -76,15 +76,15 @@ final appRouter = GoRouter(
       ),
     ),
 
-    // Assets
+    // Accounts
     GoRoute(
-      path: '/assets',
+      path: '/accounts',
       pageBuilder: (context, state) => const MaterialPage<void>(
         key: _pageKey,
         child: RootLayout(
           key: _scaffoldKey,
           currentIndex: 2,
-          child: Assets(),
+          child: Accounts(),
         ),
       ),
     ),

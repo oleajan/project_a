@@ -1,9 +1,10 @@
-// ignore_for_file: use_full_hex_values_for_flutter_colors
-
+// ignore_for_file: use_full_hex_values_for_flutter_col
 import 'package:flutter/material.dart';
 import 'shared/router.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
