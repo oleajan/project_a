@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AdaptiveNavigation extends StatelessWidget {
-  final List<NavigationDestination> destinations;
-  final int selectedIndex;
-  final void Function(int index) onDestinationSelected;
-  final Widget child;
-
   const AdaptiveNavigation({
     Key? key,
     required this.destinations,
@@ -13,6 +8,11 @@ class AdaptiveNavigation extends StatelessWidget {
     required this.onDestinationSelected,
     required this.child,
   }) : super(key: key);
+  
+  final List<NavigationDestination> destinations;
+  final int selectedIndex;
+  final void Function(int index) onDestinationSelected;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,7 @@ class AdaptiveNavigation extends StatelessWidget {
                         ))
                     .toList(),
                 selectedIndex: selectedIndex,
+                onDestinationSelected: onDestinationSelected,
               ),
               Expanded(child: child),
             ],

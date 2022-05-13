@@ -1,51 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project_a/dashboard/dashboard_view.dart';
+import 'package:project_a/setting/settings_view.dart';
 import 'package:project_a/shared/root_layout.dart';
+import 'package:project_a/transaction/transactions_view.dart';
+
+import '../asset/assets_view.dart';
 
 const _pageKey = ValueKey('_pageKey');
 const _scaffoldKey = ValueKey('_scaffoldKey');
 
 const List<NavigationDestination> destinations = [
   NavigationDestination(
-    route: '/',
     label: 'Dashboard',
-    icon: Icon(Icons.arrow_right_rounded),
+    icon: Icon(Icons.home),
+    route: '/',
   ),
   NavigationDestination(
-    route: '/transactions',
     label: 'Transactions',
-    icon: Icon(Icons.arrow_right_rounded),
+    icon: Icon(Icons.playlist_add),
+    route: '/transactions',
   ),
   NavigationDestination(
-    route: '/assets',
     label: 'Assets',
-    icon: Icon(Icons.arrow_right_rounded),
+    icon: Icon(Icons.people),
+    route: '/assets',
   ),
   NavigationDestination(
     route: '/settings',
     label: 'Settings',
-    icon: Icon(Icons.arrow_right_rounded),
+    icon: Icon(Icons.settings),
   ),
 ];
 
 class NavigationDestination {
-  final String route;
-  final String label;
-  final Icon icon;
-  final Widget? child;
-
   const NavigationDestination({
     required this.route,
     required this.label,
     required this.icon,
     this.child,
   });
+
+  final String route;
+  final String label;
+  final Icon icon;
+  final Widget? child;
 }
 
 final appRouter = GoRouter(
+  // navigatorBuilder: (context, state, child) => PlayPauseListener(child: child),
   routes: [
-    // HOMESCREEN
+    // Dashboard
     GoRoute(
       path: '/',
       pageBuilder: (context, state) => const MaterialPage<void>(
@@ -58,7 +63,46 @@ final appRouter = GoRouter(
       ),
     ),
 
-    for (final route in destinations.skip(3))
+    // Transactions
+    GoRoute(
+      path: '/transactions',
+      pageBuilder: (context, state) => const MaterialPage<void>(
+        key: _pageKey,
+        child: RootLayout(
+          key: _scaffoldKey,
+          currentIndex: 1,
+          child: Transactions(),
+        ),
+      ),
+    ),
+
+    // Assets
+    GoRoute(
+      path: '/assets',
+      pageBuilder: (context, state) => const MaterialPage<void>(
+        key: _pageKey,
+        child: RootLayout(
+          key: _scaffoldKey,
+          currentIndex: 2,
+          child: Assets(),
+        ),
+      ),
+    ),
+
+    // Settings
+    GoRoute(
+      path: '/settings',
+      pageBuilder: (context, state) => const MaterialPage<void>(
+        key: _pageKey,
+        child: RootLayout(
+          key: _scaffoldKey,
+          currentIndex: 3,
+          child: Settings(),
+        ),
+      ),
+    ),
+
+    for (final route in destinations.skip(5))
       GoRoute(
         path: route.route,
         pageBuilder: (context, state) => MaterialPage<void>(
@@ -67,8 +111,8 @@ final appRouter = GoRouter(
             key: _scaffoldKey,
             currentIndex: destinations.indexOf(route),
             child: const SizedBox(),
-          )
-        )
+          ),
+        ),
       ),
   ],
 );

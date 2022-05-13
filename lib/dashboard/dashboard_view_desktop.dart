@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/constants.dart';
-import 'package:project_a/navigation/navbar.dart';
 
 class DashboardViewDesktop extends StatefulWidget {
   const DashboardViewDesktop({Key? key}) : super(key: key);
@@ -13,9 +12,8 @@ class _DashboardViewDesktopState extends State<DashboardViewDesktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Navbar(),
       appBar: AppBar(
-        title: const Text('D E S K T O P'),
+        title: const Text('Dashboard'),
         backgroundColor: secondaryColor,
         toolbarHeight: 80,
       ),
