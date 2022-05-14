@@ -40,33 +40,73 @@ class _AccountsViewDesktopState extends State<AccountsViewDesktop> {
       ),
       body: Row(
         children: [
+          // * 1st column
           Expanded(
-            child: ListView.builder(
-              itemCount: _accounts.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16.0,
-                    top: 8,
-                    right: 16,
-                    bottom: 8,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 180,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Card(
+                          child: const SizedBox(
+                            width: 300,
+                            height: 140,
+                            child: Center(
+                              child: const Text('data1'),
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: SizedBox(
+                            width: 300,
+                            height: 140,
+                            child: Center(
+                              child: Text('data2'),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    color: Colors.grey,
-                    child: Text(index.toString()),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          top: 8,
+                          right: 16,
+                          bottom: 8,
+                        ),
+                        child: Container(
+                          // TODO card for transactions here
+                          child: Container(
+                            color: Colors.deepPurple[300],
+                          ),
+                          color: Colors.deepPurple[300],
+                          height: 120,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             ),
           ),
+          // * 2nd Column
+          // TODO DASHBOARD RIGHT SIDEBAR
           Container(
             width: 400,
             decoration: BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
-                blurRadius: 7,
                 spreadRadius: 5,
+                blurRadius: 7,
                 offset: const Offset(0, 10),
               )
             ]),
