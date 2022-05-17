@@ -18,43 +18,94 @@ class AdaptiveNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, dimens) {
-        return Scaffold(
-          body: Row(
-            children: [
-              Stack(
-                children: [
-                  NavigationRail(
-                    leading: Container(
-                      // color: Colors.blue,
-                      height: 140,
-                      alignment: Alignment.center,
-                      child: const Text('Sample Leading'),
+        // Tablet
+        if (dimens.maxWidth >= 600) {
+          return Scaffold(
+            body: Row(
+              children: [
+                Stack(
+                  children: [
+                    NavigationRail(
+                      leading: Container(
+                        // color: Colors.blue,
+                        height: 120,
+                        alignment: Alignment.center,
+                        child: const Text('Sample Leading'),
+                      ),
+                      extended: dimens.maxWidth >= 800,
+                      minExtendedWidth: 180,
+                      destinations: destinations
+                          .map((e) => NavigationRailDestination(
+                                icon: e.icon,
+                                label: Text(e.label),
+                              ))
+                          .toList(),
+                      selectedIndex: selectedIndex,
+                      onDestinationSelected: onDestinationSelected,
                     ),
-                    extended: dimens.maxWidth >= 800,
-                    minExtendedWidth: 180,
-                    destinations: destinations
-                        .map((e) => NavigationRailDestination(
-                              icon: e.icon,
-                              label: Text(e.label),
-                            ))
-                        .toList(),
-                    selectedIndex: selectedIndex,
-                    onDestinationSelected: onDestinationSelected,
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      color: Colors.blue,
-                      height: 100,
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.blue,
+                        height: 100,
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(child: child),
+              ],
+            ),
+          );
+        }
+        // Mobile
+        // TODO new transaction view back button
+        // * figure out a way to have a back button
+        // * using go_router
+        return LayoutBuilder(
+          builder: (context, dimens) {
+            // Tablet
+            if (dimens.maxWidth >= 600) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Scaffold(
+                    body: Center(
+                      child: Text('Tablet New Transaction View'),
                     ),
                   ),
-                ],
+                ),
+              );
+            }
+            // Mobile
+            return Scaffold(
+              body: child,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endFloat,
+              floatingActionButton: FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Scaffold(
+                        body: Center(
+                          child: Text('Mobile New Transaction View'),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-              Expanded(child: child),
-            ],
-          ),
+              bottomNavigationBar: NavigationBar(
+                // height: 65,
+                destinations: destinations,
+                selectedIndex: selectedIndex,
+                onDestinationSelected: onDestinationSelected,
+              ),
+            );
+          },
         );
       },
     );
