@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AdaptiveNavigation extends StatelessWidget {
   const AdaptiveNavigation({
@@ -60,9 +61,6 @@ class AdaptiveNavigation extends StatelessWidget {
           );
         }
         // Mobile
-        // TODO new transaction view back button
-        // * figure out a way to have a back button
-        // * using go_router
         return LayoutBuilder(
           builder: (context, dimens) {
             // Tablet
@@ -86,16 +84,7 @@ class AdaptiveNavigation extends StatelessWidget {
               floatingActionButton: FloatingActionButton(
                 child: const Icon(Icons.add),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Scaffold(
-                        body: Center(
-                          child: Text('Mobile New Transaction View'),
-                        ),
-                      ),
-                    ),
-                  );
+                  GoRouter.of(context).push('/transactions/new');
                 },
               ),
               bottomNavigationBar: NavigationBar(

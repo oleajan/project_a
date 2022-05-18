@@ -48,7 +48,8 @@ class NavigationDestination {
 }
 
 final appRouter = GoRouter(
-  // navigatorBuilder: (context, state, child) => PlayPauseListener(child: child),
+  debugLogDiagnostics: true,
+  initialLocation: '/transactions',
   routes: [
     // Dashboard
     GoRoute(
@@ -65,16 +66,31 @@ final appRouter = GoRouter(
 
     // Transactions
     GoRoute(
-      path: '/transactions',
-      pageBuilder: (context, state) => const MaterialPage<void>(
-        key: _pageKey,
-        child: RootLayout(
-          key: _scaffoldKey,
-          currentIndex: 1,
-          child: Transactions(),
-        ),
-      ),
-    ),
+        path: '/transactions',
+        pageBuilder: (context, state) => const MaterialPage<void>(
+              key: _pageKey,
+              child: RootLayout(
+                key: _scaffoldKey,
+                currentIndex: 1,
+                child: Transactions(),
+              ),
+            ),
+        routes: [
+          GoRoute(
+            path: 'new',
+            pageBuilder: (context, state) => MaterialPage<void>(
+              key: _scaffoldKey,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text('New Transaction'),
+                ),
+                body: const Center(
+                  child: Text('Body'),
+                ),
+              ),
+            ),
+          ),
+        ]),
 
     // Accounts
     GoRoute(
@@ -102,17 +118,21 @@ final appRouter = GoRouter(
       ),
     ),
 
-    for (final route in destinations.skip(5))
-      GoRoute(
-        path: route.route,
-        pageBuilder: (context, state) => MaterialPage<void>(
-          key: _pageKey,
-          child: RootLayout(
-            key: _scaffoldKey,
-            currentIndex: destinations.indexOf(route),
-            child: const SizedBox(),
-          ),
-        ),
-      ),
+    // for (final route in destinations.skip(5))
+    //   GoRoute(
+    //     path: route.route,
+    //     pageBuilder: (context, state) => MaterialPage<void>(
+    //       key: _pageKey,
+    //       child: RootLayout(
+    //         key: _scaffoldKey,
+    //         currentIndex: destinations.indexOf(route),
+    //         child: const SizedBox(),
+    //       ),
+    //     ),
+    //   ),
   ],
+  /// *----------------------------
+  /// * add an error builder here
+  /// *----------------------------
+  // errorBuilder: 
 );
