@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:project_a/dashboard/dashboard_view.dart';
 import 'package:project_a/setting/settings_view.dart';
 import 'package:project_a/shared/root_layout.dart';
+import 'package:project_a/transaction/new_transaction/new_transaction_view.dart';
 import 'package:project_a/transaction/transactions_view.dart';
 
 import '../accounts/accounts_view.dart';
@@ -78,16 +79,9 @@ final appRouter = GoRouter(
         routes: [
           GoRoute(
             path: 'new',
-            pageBuilder: (context, state) => MaterialPage<void>(
+            pageBuilder: (context, state) => const MaterialPage<void>(
               key: _scaffoldKey,
-              child: Scaffold(
-                appBar: AppBar(
-                  title: const Text('New Transaction'),
-                ),
-                body: const Center(
-                  child: Text('Body'),
-                ),
-              ),
+              child: NewTransactionView(),
             ),
           ),
         ]),
@@ -131,8 +125,9 @@ final appRouter = GoRouter(
     //     ),
     //   ),
   ],
+
   /// *----------------------------
   /// * add an error builder here
   /// *----------------------------
-  // errorBuilder: 
+  // errorBuilder:
 );
