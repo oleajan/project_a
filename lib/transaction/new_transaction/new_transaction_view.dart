@@ -21,8 +21,6 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   late final TextEditingController _accountFrom;
   late final TextEditingController? _note;
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   void initState() {
     _id = TextEditingController();
@@ -62,7 +60,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
         child: Form(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // * NAME
               Row(
@@ -74,9 +72,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                       autofocus: true,
                       controller: _name,
                       decoration: const InputDecoration(
-                        // icon: Icon(Icons.person),
                         icon: Icon(Icons.person),
-                        iconColor: Color.fromARGB(255, 54, 49, 49),
                         hintText: 'Payee or Item Name',
                         border: InputBorder.none,
                       ),
@@ -166,8 +162,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0)),
                               ),
-                              fixedSize:
-                                  MaterialStateProperty.all(const Size(44, 44))),
+                              fixedSize: MaterialStateProperty.all(
+                                  const Size(44, 44))),
                           onPressed: () {
                             // TODO currency changer
                           },
@@ -194,7 +190,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                         selectedDate: DateTime.now(),
                         onDateSelected: (DateTime value) {
                           // TODO on date selected
-                          print(value); 
+                          print(value);
                         },
                         decoration: const InputDecoration(
                           icon: Icon(Icons.calendar_month),
@@ -211,7 +207,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                           onDateSelected: (DateTime value) {
                             // TODO on time selected
                             print(value);
-                          } ,
+                          },
                           selectedDate: DateTime.now(),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -224,7 +220,29 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                 ),
               ),
 
-              // *
+              // * ACCOUNT TO
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: SizedBox(
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(
+                          Icons.account_balance_wallet,
+                          color: Colors.grey,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 16.0),
+                          child: Text('Account'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -234,3 +252,10 @@ class _NewTransactionViewState extends State<NewTransactionView> {
 }
 
 const double sizeboxSize = 300;
+
+enum ExpenseCategories {
+  electricity,
+  medicine,
+  gas,
+  others,
+}
