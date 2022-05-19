@@ -47,15 +47,16 @@ class _AccountsViewDesktopState extends State<AccountsViewDesktop> {
                 SizedBox(
                   height: 180,
                   child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
                         Card(
-                          child: const SizedBox(
+                          child: SizedBox(
                             width: 300,
                             height: 140,
                             child: Center(
-                              child: const Text('data1'),
+                              child: Text('data1'),
                             ),
                           ),
                         ),
