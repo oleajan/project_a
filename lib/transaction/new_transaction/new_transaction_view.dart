@@ -64,7 +64,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // name
+              // * NAME
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -82,7 +82,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                       ),
                     ),
                   ),
-                  // icon
+                  // * ICON
                   Ink(
                     decoration: const ShapeDecoration(
                       shape: CircleBorder(),
@@ -101,113 +101,130 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                 ],
               ),
 
-              // amount
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 280,
-                    child: TextField(
-                      controller: _amount,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        icon: Ink(
-                          decoration: const ShapeDecoration(
-                            shape: RoundedRectangleBorder(),
-                            color: Colors.red,
-                          ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                          ),
-                        ),
-                        border: InputBorder.none,
-                        hintText: '0.00',
-                        hintStyle: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        // hint
-                      ),
-                    ),
-                  ),
-                  // icons
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Ink(
-                          decoration: const ShapeDecoration(
-                            shape: CircleBorder(),
-                            color: Colors.lightBlue,
-                          ),
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.calculate,
+              // * AMOUNT
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 240,
+                      child: TextField(
+                        controller: _amount,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          icon: Ink(
+                            decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.red,
+                            ),
+                            child: const Icon(
+                              Icons.remove,
                               color: Colors.white,
                             ),
-                            onPressed: () {
-                              // TODO calculator
-                              // alert dialog calculator
-                            },
+                          ),
+                          border: InputBorder.none,
+                          hintText: '0.00',
+                          hintStyle: const TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          // hint
+                        ),
+                      ),
+                    ),
+                    // * ICONS
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Ink(
+                            decoration: const ShapeDecoration(
+                              shape: CircleBorder(),
+                              color: Colors.lightBlue,
+                            ),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.calculate,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                // TODO calculator
+                                // alert dialog calculator
+                              },
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.lightBlue),
+                              foregroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0)),
+                              ),
+                              fixedSize:
+                                  MaterialStateProperty.all(const Size(44, 44))),
+                          onPressed: () {
+                            // TODO currency changer
+                          },
+                          child: const Text(
+                            'PHP',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              // * DATETIME
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 130,
+                      child: DateTimeField(
+                        mode: DateTimeFieldPickerMode.date,
+                        selectedDate: DateTime.now(),
+                        onDateSelected: (DateTime value) {
+                          // TODO on date selected
+                          print(value); 
+                        },
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.calendar_month),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 120,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: DateTimeField(
+                          mode: DateTimeFieldPickerMode.time,
+                          onDateSelected: (DateTime value) {
+                            // TODO on time selected
+                            print(value);
+                          } ,
+                          selectedDate: DateTime.now(),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            icon: Icon(Icons.schedule),
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.lightBlue),
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0)),
-                            ),
-                            fixedSize:
-                                MaterialStateProperty.all(const Size(40, 38))),
-                        onPressed: () {
-                          // TODO currency changer
-                        },
-                        child: const Text(
-                          'PHP',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
 
-              // datetime
-              Row(
-                children: [
-                  SizedBox(
-                    width: 130,
-                    child: DateTimeField(
-                      mode: DateTimeFieldPickerMode.date,
-                      selectedDate: DateTime.now(),
-                      onDateSelected: (DateTime value) => print(value),
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.calendar_month),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 120,
-                    child: DateTimeField(
-                      mode: DateTimeFieldPickerMode.time,
-                      onDateSelected: (DateTime value) => print(value),
-                      selectedDate: DateTime.now(),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        icon: Icon(Icons.lock_clock),
-                      ),
-                    ),
-                  )
-                ],
-              )
+              // *
             ],
           ),
         ),
@@ -216,4 +233,4 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   }
 }
 
-const double sizeboxSize = 380;
+const double sizeboxSize = 300;
