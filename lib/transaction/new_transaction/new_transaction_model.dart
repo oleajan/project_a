@@ -5,9 +5,9 @@ enum transaction_type { income, expense, transfer }
 
 class NewTransactionModel {
   late final int id;
-  late final DateTime date;
   late final String name;
   late final Decimal amount;
+  late final DateTime date;
   late final transaction_type transactionType;
 
   // ! must be an account model
@@ -19,8 +19,8 @@ class NewTransactionModel {
   NewTransactionModel.new({
     required this.id,
     required this.name,
-    required this.date,
     required this.amount,
+    required this.date,
     required this.transactionType,
     required this.accountTo,
     required this.accountFrom,

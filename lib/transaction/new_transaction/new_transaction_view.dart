@@ -56,21 +56,48 @@ class _NewTransactionViewState extends State<NewTransactionView> {
       appBar: AppBar(
         title: const Text('New Transaction'),
       ),
-      body: Form(
-        key: _formKey,
-        child: Row(
-          children: <Widget>[
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text...';
-                }
-                return null;
-              },
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // name
+              SizedBox(
+                width: sizeboxSize,
+                child: TextField(
+                  autofocus: true,
+                  controller: _name,
+                  decoration: const InputDecoration(
+                    // icon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.person),
+                    iconColor: Color.fromARGB(255, 54, 49, 49),
+                    hintText: 'Payee or Item Name',
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+
+              // amount
+              SizedBox(
+                width: sizeboxSize,
+                child: TextField(
+                  controller: _amount,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.remove),
+                    border: InputBorder.none,
+                    hintText: 'Amount',
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+const double sizeboxSize = 410;
