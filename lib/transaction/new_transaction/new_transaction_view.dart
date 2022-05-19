@@ -80,8 +80,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                   ),
                   // * ICON
                   Ink(
-                    decoration: const ShapeDecoration(
-                      shape: CircleBorder(),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                       color: Colors.lightBlue,
                     ),
                     child: IconButton(
@@ -110,8 +110,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           icon: Ink(
-                            decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
                               color: Colors.red,
                             ),
                             child: const Icon(
@@ -135,8 +135,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Ink(
-                            decoration: const ShapeDecoration(
-                              shape: CircleBorder(),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                               color: Colors.lightBlue,
                             ),
                             child: IconButton(
@@ -160,10 +160,11 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0)),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                               fixedSize: MaterialStateProperty.all(
-                                  const Size(44, 44))),
+                                  const Size(48, 48))),
                           onPressed: () {
                             // TODO currency changer
                           },
