@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
 import 'package:project_a/transaction/new_transaction/new_transaction_model.dart';
 
 class NewTransactionView extends StatefulWidget {
@@ -57,40 +58,155 @@ class _NewTransactionViewState extends State<NewTransactionView> {
         title: const Text('New Transaction'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // name
-              SizedBox(
-                width: sizeboxSize,
-                child: TextField(
-                  autofocus: true,
-                  controller: _name,
-                  decoration: const InputDecoration(
-                    // icon: Icon(Icons.person),
-                    prefixIcon: Icon(Icons.person),
-                    iconColor: Color.fromARGB(255, 54, 49, 49),
-                    hintText: 'Payee or Item Name',
-                    border: InputBorder.none,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: sizeboxSize,
+                    child: TextField(
+                      autofocus: true,
+                      controller: _name,
+                      decoration: const InputDecoration(
+                        // icon: Icon(Icons.person),
+                        icon: Icon(Icons.person),
+                        iconColor: Color.fromARGB(255, 54, 49, 49),
+                        hintText: 'Payee or Item Name',
+                        border: InputBorder.none,
+                      ),
+                    ),
                   ),
-                ),
+                  // icon
+                  Ink(
+                    decoration: const ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: Colors.lightBlue,
+                    ),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.camera,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        // todo camera icon
+                      },
+                    ),
+                  ),
+                ],
               ),
 
               // amount
-              SizedBox(
-                width: sizeboxSize,
-                child: TextField(
-                  controller: _amount,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.remove),
-                    border: InputBorder.none,
-                    hintText: 'Amount',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 280,
+                    child: TextField(
+                      controller: _amount,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        icon: Ink(
+                          decoration: const ShapeDecoration(
+                            shape: RoundedRectangleBorder(),
+                            color: Colors.red,
+                          ),
+                          child: const Icon(
+                            Icons.remove,
+                            color: Colors.white,
+                          ),
+                        ),
+                        border: InputBorder.none,
+                        hintText: '0.00',
+                        hintStyle: const TextStyle(
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        // hint
+                      ),
+                    ),
                   ),
-                ),
+                  // icons
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Ink(
+                          decoration: const ShapeDecoration(
+                            shape: CircleBorder(),
+                            color: Colors.lightBlue,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.calculate,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              // TODO calculator
+                              // alert dialog calculator
+                            },
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.lightBlue),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0)),
+                            ),
+                            fixedSize:
+                                MaterialStateProperty.all(const Size(40, 38))),
+                        onPressed: () {
+                          // TODO currency changer
+                        },
+                        child: const Text(
+                          'PHP',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              // datetime
+              Row(
+                children: [
+                  SizedBox(
+                    width: 130,
+                    child: DateTimeField(
+                      mode: DateTimeFieldPickerMode.date,
+                      selectedDate: DateTime.now(),
+                      onDateSelected: (DateTime value) => print(value),
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.calendar_month),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 120,
+                    child: DateTimeField(
+                      mode: DateTimeFieldPickerMode.time,
+                      onDateSelected: (DateTime value) => print(value),
+                      selectedDate: DateTime.now(),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(Icons.lock_clock),
+                      ),
+                    ),
+                  )
+                ],
               )
             ],
           ),
@@ -100,4 +216,4 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   }
 }
 
-const double sizeboxSize = 410;
+const double sizeboxSize = 380;
