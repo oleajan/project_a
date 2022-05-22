@@ -1,14 +1,13 @@
 import 'package:decimal/decimal.dart';
-import 'package:project_a/transaction/new_transaction/new_transaction_view.dart';
 
-enum transaction_type { income, expense, transfer }
+enum TransactionType { income, expense, transfer }
 
 class NewTransactionModel {
   late final int id;
   late final String name;
   late final Decimal amount;
   late final DateTime date;
-  late final transaction_type transactionType;
+  late final TransactionType transactionType;
 
   // ! must be an account model
   late final String accountTo;
