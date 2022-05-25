@@ -3,7 +3,7 @@ import 'package:decimal/decimal.dart';
 enum TransactionType { income, expense, transfer }
 
 class NewTransactionModel {
-  late final int id;
+  // late final int id;
   late final String name;
   late final Decimal amount;
   late final DateTime date;
@@ -16,13 +16,12 @@ class NewTransactionModel {
   late final String? note;
 
   NewTransactionModel({
-    required this.id,
     required this.name,
     required this.amount,
     required this.date,
-    required this.transactionType,
+    // required this.transactionType,
     required this.accountTo,
-    required this.accountFrom,
+    // required this.accountFrom,
     required this.note,
   });
 }

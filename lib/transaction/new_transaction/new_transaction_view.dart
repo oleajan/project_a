@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:project_a/transaction/new_transaction/new_transaction_model.dart';
+
+import 'dart:developer' as dev;
 
 class NewTransactionView extends StatefulWidget {
   const NewTransactionView({Key? key}) : super(key: key);
@@ -13,34 +15,37 @@ class NewTransactionView extends StatefulWidget {
 class _NewTransactionViewState extends State<NewTransactionView> {
   late final NewTransactionModel newTransaction;
 
-  late final TextEditingController _id;
+  // late final TextEditingController _id;
   late final TextEditingController _name;
-  late final TextEditingController _date;
   late final TextEditingController _amount;
   late final TextEditingController _transactionType;
   late final TextEditingController _accountTo;
   late final TextEditingController _accountFrom;
   late final TextEditingController? _note;
 
+  late DateTime _date;
+  late DateTime _time;
+
   @override
   void initState() {
-    _id = TextEditingController();
+    // _id = TextEditingController();
     _name = TextEditingController();
-    _date = TextEditingController();
     _amount = TextEditingController();
     _transactionType = TextEditingController();
     _accountTo = TextEditingController();
     _accountFrom = TextEditingController();
     _note = TextEditingController();
 
+    _date = DateTime.now();
+    _time = DateTime.now();
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _id.dispose();
+    // _id.dispose();
     _name.dispose();
-    _date.dispose();
     _amount.dispose();
     _transactionType.dispose();
     _accountTo.dispose();
@@ -63,9 +68,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0)),
           ),
-          onPressed: () {
-            // TODO create & save new Transaction
-          },
+          onPressed: press,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,6 +105,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                     ),
                     // * ICON
                     Ink(
+                      width: 42,
+                      height: 42,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
@@ -159,6 +164,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Ink(
+                              width: 42,
+                              height: 42,
                               decoration: ShapeDecoration(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -210,14 +217,16 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Row(
                     children: [
+                      // DATE
                       SizedBox(
                         width: 130,
-                        child: DateTimeField(
+                        child: DateTimeFormField(
+                          initialValue: _date,
                           mode: DateTimeFieldPickerMode.date,
-                          selectedDate: DateTime.now(),
                           onDateSelected: (DateTime value) {
                             // TODO on date selected
-                            print(value);
+                            _date =
+                                DateTime(value.year, value.month, value.day);
                           },
                           decoration: const InputDecoration(
                             icon: Icon(Icons.calendar_month),
@@ -225,23 +234,22 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                           ),
                         ),
                       ),
+                      // TIME
                       SizedBox(
                         width: 120,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: DateTimeField(
-                            mode: DateTimeFieldPickerMode.time,
-                            onDateSelected: (DateTime value) {
-                              // TODO on time selected
-                              print(value);
-                            },
-                            selectedDate: DateTime.now(),
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              icon: Icon(Icons.schedule),
-                            ),
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: DateTimeFormField(
+                              initialValue: _time,
+                              mode: DateTimeFieldPickerMode.time,
+                              decoration: const InputDecoration(
+                                icon: Icon(Icons.alarm),
+                                border: InputBorder.none,
+                              ),
+                              onDateSelected: (DateTime time) {
+                                _time = time;
+                              },
+                            )),
                       ),
                     ],
                   ),
@@ -249,6 +257,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
 
                 // * ACCOUNT TO
                 SizedBox(
+                  height: 50,
                   width: 120,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 4.0),
@@ -296,6 +305,26 @@ class _NewTransactionViewState extends State<NewTransactionView> {
         ),
       ),
     );
+  }
+
+  void press() {
+    DateTime selectedDate = DateTime(
+      _date.year,
+      _date.day,
+      _date.month,
+      _time.hour,
+      _time.minute,
+    );
+
+    newTransaction = NewTransactionModel(
+      name: _name.text,
+      amount: Decimal.parse(_amount.text),
+      date: selectedDate,
+      accountTo: _accountTo.text,
+      note: _note?.text,
+    );
+
+    dev.log(newTransaction.toString());
   }
 }
 
