@@ -26,6 +26,24 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   late DateTime _date;
   late DateTime _time;
 
+  // * should be in database
+  // * types (categories) of expense accounts
+  // * e.g. Youtube Premium can be under Subscriptions
+  // * which is of type Entertainment
+
+  final List<String> expenseCategories = [
+    'TRANSPORTATION',
+    'HOUSING',
+    'FOOD',
+    'UTILITIES',
+    'HEALTHCARE',
+    'INSURANCE',
+    'ENTERTAINMENT',
+    'OTHERS',
+  ];
+
+  String selectedAccountTo = '';
+
   @override
   void initState() {
     // _id = TextEditingController();
@@ -38,6 +56,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
 
     _date = DateTime.now();
     _time = DateTime.now();
+
+    selectedAccountTo = expenseCategories[0];
 
     super.initState();
   }
@@ -63,10 +83,10 @@ class _NewTransactionViewState extends State<NewTransactionView> {
       ),
       floatingActionButton: SizedBox(
         height: 45,
-        width: 100,
+        width: 85,
         child: FloatingActionButton(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
           onPressed: press,
           child: Row(
@@ -258,26 +278,35 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                 // * ACCOUNT TO
                 SizedBox(
                   height: 50,
-                  width: 120,
+                  width: 350,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 4.0),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.account_balance_wallet,
-                            color: Colors.grey,
+                    child: Row(
+                      children:[
+                        const Icon(
+                          Icons.receipt_long,
+                          color: Colors.grey,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 16.0),
-                            child: Text('Account'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: DropdownButton(
+                            items: expenseCategories.map((category) {
+                              return DropdownMenuItem(
+                                value: category,
+                                child: Text(category),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedAccountTo = newValue!;
+                              });
+                              dev.log('selected: ${newValue.toString()}');
+                            },
+                            value: selectedAccountTo,
+                            // isExpanded: true,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -329,17 +358,3 @@ class _NewTransactionViewState extends State<NewTransactionView> {
 }
 
 const double sizeboxSize = 300;
-
-// * types (categories) of expense accounts
-// * e.g. Youtube Premium can be under Subscriptions
-// * which is of type Entertainment
-enum ExpenseCategories {
-  transportation,
-  housing,
-  food,
-  utilities,
-  healthcare,
-  insurance,
-  entertainment,
-  others,
-}
