@@ -4,7 +4,7 @@ enum TransactionType { income, expense, transfer }
 
 class NewTransactionModel {
   // late final int id;
-  late final String name;
+  late final String? name;
   late final Decimal amount;
   late final DateTime date;
   late final TransactionType transactionType;

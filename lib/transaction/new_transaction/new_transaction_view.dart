@@ -13,14 +13,10 @@ class NewTransactionView extends StatefulWidget {
 }
 
 class _NewTransactionViewState extends State<NewTransactionView> {
-  late final NewTransactionModel newTransaction;
-
   // late final TextEditingController _id;
-  late final TextEditingController _name;
+  late final TextEditingController? _name;
   late final TextEditingController _amount;
   late final TextEditingController _transactionType;
-  late final TextEditingController _accountTo;
-  late final TextEditingController _accountFrom;
   late final TextEditingController? _note;
 
   late DateTime _date;
@@ -32,14 +28,14 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   // * which is of type Entertainment
 
   final List<String> expenseCategories = [
-    'TRANSPORTATION',
-    'HOUSING',
-    'FOOD',
-    'UTILITIES',
-    'HEALTHCARE',
-    'INSURANCE',
-    'ENTERTAINMENT',
-    'OTHERS',
+    'Transportation',
+    'Housing',
+    'Food',
+    'Utilities',
+    'Healthcare',
+    'Insurance',
+    'Entertainment',
+    'Others',
   ];
 
   String selectedAccountTo = '';
@@ -50,8 +46,6 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     _name = TextEditingController();
     _amount = TextEditingController();
     _transactionType = TextEditingController();
-    _accountTo = TextEditingController();
-    _accountFrom = TextEditingController();
     _note = TextEditingController();
 
     _date = DateTime.now();
@@ -65,11 +59,9 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   @override
   void dispose() {
     // _id.dispose();
-    _name.dispose();
+    _name?.dispose();
     _amount.dispose();
     _transactionType.dispose();
-    _accountTo.dispose();
-    _accountFrom.dispose();
     _note?.dispose();
 
     super.dispose();
@@ -198,7 +190,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
-                                  // TODO calculator
+                                  // todo calculator
                                   // alert dialog calculator
                                 },
                               ),
@@ -219,7 +211,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                                 fixedSize: MaterialStateProperty.all(
                                     const Size(42, 42))),
                             onPressed: () {
-                              // TODO currency changer
+                              // todo currency changer
                             },
                             child: const Text(
                               'PHP',
@@ -263,7 +255,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                               initialValue: _time,
                               mode: DateTimeFieldPickerMode.time,
                               decoration: const InputDecoration(
-                                icon: Icon(Icons.alarm),
+                                icon: Icon(Icons.schedule),
                                 border: InputBorder.none,
                               ),
                               onDateSelected: (DateTime time) {
@@ -289,21 +281,22 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                           ),
                         Padding(
                           padding: const EdgeInsets.only(left: 16.0),
-                          child: DropdownButton(
-                            items: expenseCategories.map((category) {
-                              return DropdownMenuItem(
-                                value: category,
-                                child: Text(category),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedAccountTo = newValue!;
-                              });
-                              dev.log('selected: ${newValue.toString()}');
-                            },
-                            value: selectedAccountTo,
-                            // isExpanded: true,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              items: expenseCategories.map((category) {
+                                return DropdownMenuItem(
+                                  value: category,
+                                  child: Text(category),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedAccountTo = newValue!;
+                                });
+                                dev.log('selected: ${newValue.toString()}');
+                              },
+                              value: selectedAccountTo,
+                            ),
                           ),
                         ),
                       ],
@@ -337,6 +330,17 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   }
 
   void press() {
+    /// todo
+    /// * check values first for null before saving
+    /// * check date
+    
+    if (_amount.text.isEmpty) {
+      // todo
+      // should return an alert dialog warning of 0 amount value
+      // prompt for continue or cancel
+      _amount.text = '0.00';
+    }
+
     DateTime selectedDate = DateTime(
       _date.year,
       _date.day,
@@ -345,15 +349,19 @@ class _NewTransactionViewState extends State<NewTransactionView> {
       _time.minute,
     );
 
-    newTransaction = NewTransactionModel(
-      name: _name.text,
+    NewTransactionModel newTransaction = NewTransactionModel(
+      name: _name?.text,
       amount: Decimal.parse(_amount.text),
       date: selectedDate,
-      accountTo: _accountTo.text,
+      accountTo: selectedAccountTo,
       note: _note?.text,
     );
 
-    dev.log(newTransaction.toString());
+    dev.log(newTransaction.name.toString());
+    dev.log(newTransaction.amount.toString());
+    dev.log(newTransaction.date.toString());
+    dev.log(newTransaction.accountTo.toString());
+    dev.log(newTransaction.note.toString());
   }
 }
 
