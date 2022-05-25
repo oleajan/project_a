@@ -15,7 +15,7 @@ class NewTransactionModel {
 
   late final String? note;
 
-  NewTransactionModel.new({
+  NewTransactionModel({
     required this.id,
     required this.name,
     required this.amount,

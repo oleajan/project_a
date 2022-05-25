@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:project_a/transaction/new_transaction/new_transaction_model.dart';
@@ -54,6 +55,26 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Transaction'),
+      ),
+      floatingActionButton: SizedBox(
+        height: 45,
+        width: 100,
+        child: FloatingActionButton(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+          ),
+          onPressed: () {
+            // TODO create & save new Transaction
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Icon(Icons.save),
+              Text('Save'),
+            ],
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -165,11 +186,11 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                                 shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(16.0),
                                   ),
                                 ),
                                 fixedSize: MaterialStateProperty.all(
-                                    const Size(48, 48))),
+                                    const Size(42, 42))),
                             onPressed: () {
                               // TODO currency changer
                             },
@@ -280,9 +301,16 @@ class _NewTransactionViewState extends State<NewTransactionView> {
 
 const double sizeboxSize = 300;
 
+// * types (categories) of expense accounts
+// * e.g. Youtube Premium can be under Subscriptions
+// * which is of type Entertainment
 enum ExpenseCategories {
-  electricity,
-  medicine,
-  gas,
+  transportation,
+  housing,
+  food,
+  utilities,
+  healthcare,
+  insurance,
+  entertainment,
   others,
 }
