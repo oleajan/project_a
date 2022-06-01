@@ -21,7 +21,7 @@ class NewTransactionModel {
     required this.date,
     // required this.transactionType,
     required this.accountTo,
-    // required this.accountFrom,
+    required this.accountFrom,
     required this.note,
   });
 }

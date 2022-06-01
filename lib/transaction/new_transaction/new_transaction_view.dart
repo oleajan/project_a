@@ -40,6 +40,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
   ];
 
   String selectedAccountTo = '';
+  String selectedAccountFrom = '';
 
   @override
   void initState() {
@@ -53,6 +54,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     _time = DateTime.now();
 
     selectedAccountTo = expenseCategories[0];
+    selectedAccountFrom = expenseCategories[0];
 
     super.initState();
   }
@@ -116,7 +118,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                         ),
                       ),
                     ),
-                    // * ICON
+                    // ICON
                     Ink(
                       width: 42,
                       height: 42,
@@ -171,7 +173,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                           ),
                         ),
                       ),
-                      // * ICONS
+                      // ICONS
                       Row(
                         children: [
                           Padding(
@@ -292,11 +294,11 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  selectedAccountTo = newValue!;
+                                  selectedAccountFrom = newValue!;
                                 });
                                 dev.log('selected: ${newValue.toString()}');
                               },
-                              value: selectedAccountTo,
+                              value: selectedAccountFrom,
                             ),
                           ),
                         ),
@@ -391,6 +393,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
       name: _name?.text,
       amount: Decimal.parse(_amount.text),
       date: selectedDate,
+      accountFrom: selectedAccountFrom,
       accountTo: selectedAccountTo,
       note: _note?.text,
     );
@@ -398,6 +401,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     dev.log(newTransaction.name.toString());
     dev.log(newTransaction.amount.toString());
     dev.log(newTransaction.date.toString());
+    dev.log(newTransaction.accountFrom.toString());
     dev.log(newTransaction.accountTo.toString());
     dev.log(newTransaction.note.toString());
 
