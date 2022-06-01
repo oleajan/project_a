@@ -60,7 +60,7 @@ class AdaptiveNavigation extends StatelessWidget {
             ),
           );
         }
-        // Mobile
+        // * Tablet / Desktop
         return LayoutBuilder(
           builder: (context, dimens) {
             // Tablet
@@ -68,25 +68,15 @@ class AdaptiveNavigation extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Scaffold(
-                    body: Center(
-                      child: Text('Tablet New Transaction View'),
-                    ),
+                  builder: (context) => Scaffold(
+                    body: child,
                   ),
                 ),
               );
             }
-            // Mobile
+            // * Mobile
             return Scaffold(
               body: child,
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.endFloat,
-              floatingActionButton: FloatingActionButton(
-                child: const Icon(Icons.add),
-                onPressed: () {
-                  GoRouter.of(context).push('/transactions/new');
-                },
-              ),
               bottomNavigationBar: NavigationBar(
                 // height: 65,
                 destinations: destinations,
