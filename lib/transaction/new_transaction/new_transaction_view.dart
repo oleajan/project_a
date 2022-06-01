@@ -1,6 +1,7 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project_a/transaction/new_transaction/new_transaction_model.dart';
 
 import 'dart:developer' as dev;
@@ -75,7 +76,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
       ),
       floatingActionButton: SizedBox(
         height: 45,
-        width: 85,
+        width: 95,
         child: FloatingActionButton(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -267,6 +268,43 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                   ),
                 ),
 
+                // * ACCOUNT FROM
+                SizedBox(
+                  height: 50,
+                  width: 350,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.account_balance,
+                          color: Colors.black45,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              items: expenseCategories.map((category) {
+                                return DropdownMenuItem(
+                                  value: category,
+                                  child: Text(category),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedAccountTo = newValue!;
+                                });
+                                dev.log('selected: ${newValue.toString()}');
+                              },
+                              value: selectedAccountTo,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
                 // * ACCOUNT TO
                 SizedBox(
                   height: 50,
@@ -274,11 +312,11 @@ class _NewTransactionViewState extends State<NewTransactionView> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Row(
-                      children:[
+                      children: [
                         const Icon(
                           Icons.receipt_long,
-                          color: Colors.grey,
-                          ),
+                          color: Colors.black45,
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 16.0),
                           child: DropdownButtonHideUnderline(
@@ -333,7 +371,7 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     /// todo
     /// * check values first for null before saving
     /// * check date
-    
+
     if (_amount.text.isEmpty) {
       // todo
       // should return an alert dialog warning of 0 amount value
@@ -362,6 +400,8 @@ class _NewTransactionViewState extends State<NewTransactionView> {
     dev.log(newTransaction.date.toString());
     dev.log(newTransaction.accountTo.toString());
     dev.log(newTransaction.note.toString());
+
+    GoRouter.of(context).pop();
   }
 }
 
